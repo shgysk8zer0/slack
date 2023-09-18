@@ -1,18 +1,17 @@
 {
-  "name": "npm-template",
-  "version": "1.1.0",
-  "description": "A template repo for npm packages",
+  "name": "@shgysk8zer0/slack",
+  "version": "0.0.1",
+  "description": "An npm package for sending messages in Slack",
   "type": "module",
-  "main": "index.cjs",
-  "module": "index.js",
+  "main": "slack.cjs",
+  "module": "slack.js",
   "exports": {
     ".": {
-      "import": "./index.js",
-      "require": "./index.cjs"
+      "import": "./slack.js",
+      "require": "./slack.cjs"
     },
     "./*": {
-      "import": "./*.js",
-      "require": "./*.cjs"
+      "import": "./*.js"
     }
   },
   "engines": {
@@ -24,7 +23,7 @@
     "preversion": "npm test",
     "prepare": "npm run build",
     "lint:js": "eslint .",
-    "fix:js": "eslint. --fix",
+    "fix:js": "eslint . --fix",
     "build": "npm run build:js",
     "build:js": "rollup -c rollup.config.js",
     "create:lock": "npm i --package-lock-only --ignore-scripts --no-audit --no-fund",
@@ -35,7 +34,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shgysk8zer0/npm-template.git"
+    "url": "git+https://github.com/shgysk8zer0/slack.git"
   },
   "author": "Chris Zuber <admin@kernvalley.us>",
   "license": "MIT",
@@ -50,9 +49,9 @@
     }
   ],
   "bugs": {
-    "url": "https://github.com/shgysk8zer0/npm-template/issues"
+    "url": "https://github.com/shgysk8zer0/slack/issues"
   },
-  "homepage": "https://github.com/shgysk8zer0/npm-template#readme",
+  "homepage": "https://github.com/shgysk8zer0/slack#readme",
   "devDependencies": {
     "@shgysk8zer0/js-utils": "^1.0.1"
   }
