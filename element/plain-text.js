@@ -1,4 +1,5 @@
 import { SlackTextElement } from './text.js';
+import { createFactory } from '../functions.js';
 
 export class SlackPlainTextElement extends SlackTextElement {
 	#emoji;
@@ -34,3 +35,5 @@ export class SlackPlainTextElement extends SlackTextElement {
 		return 'plain_text';
 	}
 }
+
+export const createSlackPlainTextElement = createFactory(SlackPlainTextElement);

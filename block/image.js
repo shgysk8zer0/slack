@@ -2,6 +2,7 @@ import { SlackBlock } from './block.js';
 import { SlackTextElement } from '../element/text.js';
 import { SlackPlainTextElement } from '../element/plain-text.js';
 import { isURL } from '../validation.js';
+import { createFactory } from '../functions.js';
 
 export class SlackImageBlock extends SlackBlock {
 	#url;
@@ -64,3 +65,5 @@ export class SlackImageBlock extends SlackBlock {
 		return 'image';
 	}
 }
+
+export const createSlackImageBlock = createFactory(SlackImageBlock);

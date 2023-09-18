@@ -5,7 +5,7 @@
 import { SlackBlock } from './block/block.js';
 import { SlackError } from './error.js';
 import { isURL } from './validation.js';
-import { open } from './functions.js';
+import { open, createFactory } from './functions.js';
 
 const HOOK_ORIGINS = ['https://hooks.slack.com/'];
 
@@ -13,11 +13,15 @@ export class SlackMessage {
 	#webhook;
 	#blocks = [];
 
-	constructor(webhook = globalThis?.process?.env?.SLACK_WEBHOOK_URL) {
+	constructor(webhook = globalThis?.process?.env?.SLACK_WEBHOOK_URL, ...blocks) {
 		if (! (isURL(webhook) && HOOK_ORIGINS.some(origin => webhook.startsWith(origin)))) {
 			throw new Error('Invalid Slack Web Hook URL.');
 		} else {
 			this.#webhook = webhook;
+		}
+
+		if (blocks.length !== 0) {
+			this.add(...blocks);
 		}
 	}
 
@@ -87,3 +91,5 @@ export class SlackMessage {
 		}
 	}
 }
+
+export const createSlackMessage = createFactory(SlackMessage);

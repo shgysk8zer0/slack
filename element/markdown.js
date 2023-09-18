@@ -1,4 +1,5 @@
 import { SlackTextElement } from './text.js';
+import { createFactory } from '../functions.js';
 
 export class SlackMarkdownElement extends SlackTextElement {
 	#verbatim;
@@ -34,3 +35,5 @@ export class SlackMarkdownElement extends SlackTextElement {
 		return 'mrkdwn';
 	}
 }
+
+export const createSlackMarkdownElement = createFactory(SlackMarkdownElement);

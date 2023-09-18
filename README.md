@@ -88,7 +88,9 @@ import {
 
 ### Build and Send the Message
 
-```
+### Class-Based Approach
+
+```js
 // Create a new SlackMessage instance with the specified webhook URL.
 // This is set to `process.env.SLACK_WEBHOOK_URL` as a default in node
 new SlackMessage(SLACK_WEBHOOK_URL)
@@ -135,6 +137,53 @@ new SlackMessage(SLACK_WEBHOOK_URL)
 			await err.openInBlockKitBuilder();
 		}
 	});
+```
+
+### Function-Based Approach
+
+> **Note:** Both the "Class-Based" and "Function-Based" approaches are functionally equivalent. In the "Function-Based" approach, functions serve as convenient wrappers around the class constructors. They accept the same arguments as the constructors and simply create instances of the respective classes using the provided arguments.
+
+```js
+import { createSlackMessage } from '@shgysk8zer0/slack/message.js';
+import { createSlackHeaderBlock } from '@shgysk8zer0/slack/block/header.js';
+import { createSlackPlainTextElement } from '@shgysk8zer0/slack/element/plain-text.js';
+import { createSlackMarkdownElement } from '@shgysk8zer0/slack/element/markdown.js';
+import { createSlackImageBlock } from '@shgysk8zer0/slack/block/image.js';
+import { createSlackDividerBlock } from '@shgysk8zer0/slack/block/divider.js';
+import { createSlackButtonElement } from '@shgysk8zer0/slack/element/button.js';
+import { createSlackSectionBlock } from '@shgysk8zer0/slack/block/section.js';
+
+createSlackMessage(undefined,
+	createSlackHeaderBlock(createSlackPlainTextElement('New Message on from Slack Bot')),
+	createSlackDividerBlock(),
+	createSlackImageBlock('https://example.com/img.png', {
+		title: createSlackPlainTextElement('Here is some image'),
+		alt: 'Missing Image',
+	}),
+	createSlackSectionBlock(
+		createSlackMarkdownElement('This is some example <markdown | https://en.wikipedia.org/wiki/Markdown>'),
+		{
+			accessory: createSlackButtonElement('Open link!', {
+				style: 'primary',
+				url: 'https://example.com',
+			}),
+			fields: [
+				createSlackPlainTextElement('Click Something!'),
+				createSlackMarkdownElement('*Email:* <mailto:user@example.com | user@example.com>'),
+				createSlackMarkdownElement('*phone:* <tel:+1-555-555-5555 | 555-555-5555>'),
+			]
+		},
+	),
+).send({ signal: AbortSignal.timeout(5000) }).then(
+	() => console.log('Message sent'),
+	async err => {
+		console.error(err);
+
+		if (err.status !== 0) {
+			await err.openInBlockKitBuilder();
+		}
+	}
+);
 ```
 
 ## To-Do (Work in Progress)

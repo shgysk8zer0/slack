@@ -1,5 +1,6 @@
 import { SlackBlock } from './block.js';
 import { SlackPlainTextElement } from '../element/plain-text.js';
+import { createFactory } from '../functions.js';
 
 export class SlackHeaderBlock extends SlackBlock {
 	#text;
@@ -37,3 +38,5 @@ export class SlackHeaderBlock extends SlackBlock {
 		return 'header';
 	}
 }
+
+export const createSlackHeaderBlock = createFactory(SlackHeaderBlock);

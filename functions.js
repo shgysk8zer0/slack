@@ -1,3 +1,5 @@
+export const createFactory = constructor => (...args) => new constructor(...args);
+
 export async function open(url, base) {
 	if (typeof url === 'string') {
 		return open(new URL(url, base));

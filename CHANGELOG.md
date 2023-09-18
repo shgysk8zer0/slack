@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v0.0.2] - 2023-09-28
+
+### Added
+- Add `createSlack*` alternatives to `new Slack*`
+
+### Fixed
+- Fix missing lang on code block for example in README
+
 ## [v0.0.1] - 2023-09-18
 
 Initial Release
