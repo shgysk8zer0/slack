@@ -2,6 +2,9 @@ import { SlackElement } from './element.js';
 import { SlackPlainTextElement } from './plain-text.js';
 import { SLACK_DEFAULT, SLACK_PRIMARY, SLACK_DANGER } from './styles.js';
 import { isURL } from '../validation.js';
+import { createFactory } from '../functions.js';
+
+
 
 export class SlackButtonElement extends SlackElement {
 	#text;
@@ -142,3 +145,5 @@ export class SlackButtonElement extends SlackElement {
 		return [SLACK_DEFAULT, SLACK_PRIMARY, SLACK_DANGER];
 	}
 }
+
+export const createSlackButtonElement = createFactory(SlackButtonElement);

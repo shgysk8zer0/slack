@@ -1,4 +1,4 @@
-export { SlackButtonElement } from './button.js';
-export { SlackMarkdownElement } from './markdown.js';
-export { SlackPlainTextElement } from './plain-text.js';
-export * from './styles.js';
+export { SlackButtonElement, createSlackButtonElement } from './button.js';
+export { SlackMarkdownElement, createSlackMarkdownElement } from './markdown.js';
+export { SlackPlainTextElement, createSlackPlainTextElement } from './plain-text.js';
+export { SLACK_DEFAULT, SLACK_PRIMARY, SLACK_DANGER } from './styles.js';

@@ -2,6 +2,7 @@ import { SlackBlock } from './block.js';
 import { SlackElement } from '../element/element.js';
 import { SlackTextElement } from '../element/text.js';
 import { SlackPlainTextElement } from '../element/plain-text.js';
+import { createFactory } from '../functions.js';
 
 export class SlackSectionBlock extends SlackBlock {
 	#text;
@@ -72,3 +73,5 @@ export class SlackSectionBlock extends SlackBlock {
 		return 'section';
 	}
 }
+
+export const createSlackSectionBlock = createFactory(SlackSectionBlock);
