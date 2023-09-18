@@ -1,5 +1,7 @@
-export async function open(url) {
-	if (! (typeof url === 'string' || url instanceof URL)) {
+export async function open(url, base) {
+	if (typeof url === 'string') {
+		return open(new URL(url, base));
+	} else if (! (url instanceof URL)) {
 		throw new TypeError('url must be a string or URL object.');
 	} else if (typeof window !== 'undefined') { // browser
 		window.open(url);
@@ -12,15 +14,15 @@ export async function open(url) {
 				case 'freebsd':
 				case 'openbsd':
 				case 'netbsd':
-					exec(`xdg-open "${url}"`, err => err instanceof Error ? reject(err) : resolve());
+					exec(`xdg-open "${url.href}"`, err => err instanceof Error ? reject(err) : resolve());
 					break;
 
 				case 'darwin':
-					exec(`open "${url}"`, err => err instanceof Error ? reject(err) : resolve());
+					exec(`open "${url.href}"`, err => err instanceof Error ? reject(err) : resolve());
 					break;
 
 				case 'win32':
-					exec(`start "" "${url}"`, err => err instanceof Error ? reject(err) : resolve());
+					exec(`start "" "${url.href}"`, err => err instanceof Error ? reject(err) : resolve());
 					break;
 
 				default:
