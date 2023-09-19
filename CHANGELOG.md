@@ -6,6 +6,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v0.0.3] - 2023-09-19
+
+### Added
+- Add `SlackActionsBlock`
+- Add `SlackContextBlock`
+- Add `SlackInputBlock`
+- Created new `SlackInteractiveElement` as base class for buttons & inputs
+- Add `SlackInputElement` with some types (text, url, email, number)
+
+### Changed
+- `SlackButtonElement` now extends `SlackInteractiveElement`
+- `SlackSectionBlock.accessory` must now be a `SlackInteractiveElement`
+
+### Fixed
+- Fixed default button type to be `undefined` instead of `'default'`
+
 ## [v0.0.2] - 2023-09-28
 
 ### Added
