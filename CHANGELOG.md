@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v0.0.4] - 2023-09-19
+
+### Fixed
+- Fixed bad logic determining success of adding elements/fields [#6](https://github.com/shgysk8zer0/slack/issues/6
+)
+
 ## [v0.0.3] - 2023-09-19
 
 ### Added

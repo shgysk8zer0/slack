@@ -1,6 +1,6 @@
 {
   "name": "@shgysk8zer0/slack",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "An npm package for sending messages in Slack",
   "type": "module",
   "main": "slack.cjs",
