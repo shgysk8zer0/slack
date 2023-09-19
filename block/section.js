@@ -52,9 +52,10 @@ export class SlackSectionBlock extends SlackBlock {
 	}
 
 	add(...fields) {
+		const before = this.#fields.length;
 		const count = this.#fields.push(...fields.filter(field => field instanceof SlackTextElement));
 
-		if (count !== fields.length) {
+		if (count - before !== fields.length) {
 			throw new Error('Error adding some fields.');
 		}
 

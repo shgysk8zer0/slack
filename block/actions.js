@@ -16,9 +16,10 @@ export class SlackActionsBlock extends SlackBlock {
 	}
 
 	add(...elements) {
+		const before = this.#elements.length;
 		const count = this.#elements.push(...elements.filter(el => el instanceof SlackInteractiveElement));
 
-		if (count !== elements.length) {
+		if (count - before !== elements.length) {
 			throw new Error('Error adding some elements.');
 		}
 

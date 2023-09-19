@@ -15,9 +15,10 @@ export class SlackContextBlock extends SlackBlock {
 			this.add(...elements);
 		}
 	}add(...elements) {
+		const before = this.#elements.length;
 		const count = this.#elements.push(...elements.filter(el => el instanceof SlackTextElement || el instanceof SlackImageBlock));
 
-		if (count !== elements.length) {
+		if (count - before !== elements.length) {
 			throw new Error('Error adding some elements.');
 		}
 
