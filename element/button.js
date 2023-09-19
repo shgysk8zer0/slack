@@ -1,14 +1,11 @@
-import { SlackElement } from './element.js';
+import { SlackInteractiveElement } from './interactive.js';
 import { SlackPlainTextElement } from './plain-text.js';
 import { SLACK_DEFAULT, SLACK_PRIMARY, SLACK_DANGER } from './styles.js';
 import { isURL } from '../validation.js';
 import { createFactory } from '../functions.js';
 
-
-
-export class SlackButtonElement extends SlackElement {
+export class SlackButtonElement extends SlackInteractiveElement {
 	#text;
-	#action;
 	#url;
 	#value;
 	#style;
@@ -24,16 +21,12 @@ export class SlackButtonElement extends SlackElement {
 		accessibilityLabel,
 		// confirm,
 	} = {}) {
-		super({ id });
+		super({ id, action });
 
 		this.text = text;
 
 		if (typeof accessibilityLabel !== 'undefined') {
 			this.accessibilityLabel = accessibilityLabel;
-		}
-
-		if (typeof action !== 'undefined') {
-			this.action = action;
 		}
 
 		if (typeof style !== 'undefined') {
@@ -58,18 +51,6 @@ export class SlackButtonElement extends SlackElement {
 			this.#accessibilityLabel = val;
 		} else {
 			throw new TypeError('accessibilityLabel must be a non-empty string.');
-		}
-	}
-
-	get action() {
-		return this.#action;
-	}
-
-	set action(val) {
-		if (typeof val === 'string') {
-			this.#action = val;
-		} else {
-			throw new TypeError('action must be a string.');
 		}
 	}
 
@@ -130,7 +111,6 @@ export class SlackButtonElement extends SlackElement {
 			...super.toJSON(),
 			text: this.#text,
 			style: this.#style,
-			action_id: this.#action,
 			url: this.#url,
 			value: this.#value,
 			accessibility_label: this.#accessibilityLabel,
@@ -142,7 +122,7 @@ export class SlackButtonElement extends SlackElement {
 	}
 
 	static get STYLES() {
-		return [SLACK_DEFAULT, SLACK_PRIMARY, SLACK_DANGER];
+		return [SLACK_PRIMARY, SLACK_DANGER];
 	}
 }
 

@@ -1,5 +1,6 @@
 import { SlackBlock } from './block.js';
 import { SlackElement } from '../element/element.js';
+import { SlackInteractiveElement } from '../element/interactive.js';
 import { SlackTextElement } from '../element/text.js';
 import { SlackPlainTextElement } from '../element/plain-text.js';
 import { createFactory } from '../functions.js';
@@ -30,10 +31,10 @@ export class SlackSectionBlock extends SlackBlock {
 	}
 
 	set accessory(val) {
-		if (val instanceof SlackElement) {
+		if (val instanceof SlackInteractiveElement) {
 			this.#accessory = val;
 		} else {
-			throw new TypeError('Accessory must be a SlackElement.');
+			throw new TypeError('Accessory must be a SlackInteractiveElement.');
 		}
 	}
 
