@@ -1,5 +1,4 @@
 import { SlackBlock } from './block.js';
-import { SlackElement } from '../element/element.js';
 import { SlackInteractiveElement } from '../element/interactive.js';
 import { SlackTextElement } from '../element/text.js';
 import { SlackPlainTextElement } from '../element/plain-text.js';
