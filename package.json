@@ -1,18 +1,35 @@
 {
   "name": "@shgysk8zer0/slack",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "An npm package for sending messages in Slack",
-  "keywords": ["slack", "slack-api", "slack-webhook"],
+  "keywords": [
+    "slack",
+    "slack-api",
+    "slack-webhook"
+  ],
   "type": "module",
   "main": "slack.cjs",
-  "module": "slack.js",
+  "module": "./cjs/slack.js",
   "exports": {
     ".": {
       "import": "./slack.js",
-      "require": "./slack.cjs"
+      "require": "./cjs/slack.cjs"
+    },
+    "./*.js": {
+      "import": "./*.js",
+      "require": "./cjs/*.cjs"
+    },
+    "./*.mjs": {
+      "import": "./*.js",
+      "require": "./cjs/*.cjs"
+    },
+    "./*.cjs": {
+      "import": "./*.js",
+      "require": "./cjs/*.cjs"
     },
     "./*": {
-      "import": "./*.js"
+      "import": "./*.js",
+      "require": "./cjs/*.cjs"
     }
   },
   "engines": {
@@ -23,10 +40,11 @@
     "test": "npm run lint:js && npm run build",
     "preversion": "npm test",
     "prepare": "npm run build",
+    "clean": "rm -f ./cjs/*.cjs && rm -rf ./cjs/*",
     "lint:js": "eslint .",
     "fix:js": "eslint . --fix",
     "build": "npm run build:js",
-    "build:js": "rollup -c rollup.config.js",
+    "build:js": "npm run clean && rollup -c rollup.config.js",
     "create:lock": "npm i --package-lock-only --ignore-scripts --no-audit --no-fund",
     "version:bump": "npm run version:bump:patch",
     "version:bump:patch": "npm version --no-git-tag-version patch && npm run create:lock",
@@ -54,6 +72,12 @@
   },
   "homepage": "https://github.com/shgysk8zer0/slack#readme",
   "devDependencies": {
-    "@shgysk8zer0/js-utils": "^1.0.1"
+    "@shgysk8zer0/js-utils": "^1.0.1",
+    "@shgysk8zer0/npm-utils": "^1.1.1"
+  },
+  "dependencies": {
+    "@rollup/plugin-node-resolve": "^15.2.1",
+    "@shgysk8zer0/consts": "^1.0.7",
+    "@shgysk8zer0/http": "^1.0.5"
   }
 }

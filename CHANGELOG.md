@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v0.0.5] - 2023-10-01
+
+### Added
+- Add `@shgysk8zer0/consts` and `@shgysk8zer0/http`
+- Add CommonJS versions of all modules
+
+### Changed
+- Update `exports`
+
 ## [v0.0.4] - 2023-09-19
 
 ### Added

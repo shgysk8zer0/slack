@@ -1,4 +1,4 @@
-import { open } from './functions.js';
+import { openLink } from '@shgysk8zer0/http/utils.js';
 import { isURL } from './validation.js';
 
 /**
@@ -61,7 +61,7 @@ export class SlackError extends Error {
 	*/
 	async openInBlockKitBuilder() {
 		if (isURL(this.#debugURL)) {
-			await open(this.#debugURL);
+			await openLink(this.#debugURL);
 		} else {
 			throw new Error('No debug URL set.');
 		}

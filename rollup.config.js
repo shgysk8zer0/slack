@@ -1,10 +1,25 @@
-import { getConfig } from '@shgysk8zer0/js-utils/rollup';
+import { warningHandler } from '@shgysk8zer0/js-utils/rollup';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+import { listDirByExt } from '@shgysk8zer0/npm-utils/fs';
 
-export default getConfig('./slack.js', {
-	format: 'cjs',
-	minify: false,
-	sourcemap: false,
-	external: ['node:child_process'],
-	plugins: [],
-	globals: {},
-});
+const scripts = await Promise.all([
+	listDirByExt('./', '.js'),
+	listDirByExt('./block/', '.js'),
+	listDirByExt('./element/', '.js')
+]);
+
+console.log(scripts.flat());
+
+export default {
+	input: scripts.flat().filter(script => ! script.endsWith('.config.js')),
+	external: ['node:child_process', '@shgysk8zer0/http/utils.js', '@shgysk8zer0/consts/mimes.js', '@shgysk8zer0/slack/*'],
+	onwarn: warningHandler,
+	output: {
+		dir: './cjs/',
+		format: 'cjs',
+		preserveModules: true,
+		entryFileNames: '[name].cjs',
+		chunkFileNames: '[name]-[hash].cjs',
+	},
+	plugins: [nodeResolve()],
+};
