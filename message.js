@@ -2,10 +2,12 @@
  * @see https://api.slack.com/reference/block-kit/blocks
  * @see https://app.slack.com/block-kit-builder/
  */
+import { JSON as JSON_MIME } from '@shgysk8zer0/consts/mimes.js';
+import { openLink } from '@shgysk8zer0/http/utils.js';
 import { SlackBlock } from './block/block.js';
 import { SlackError } from './error.js';
 import { isURL } from './validation.js';
-import { open, createFactory } from './functions.js';
+import { createFactory } from './functions.js';
 
 const HOOK_ORIGINS = ['https://hooks.slack.com/'];
 
@@ -54,7 +56,7 @@ export class SlackMessage {
 	}
 
 	async debug() {
-		await open(this.debugURL);
+		await openLink(this.debugURL);
 	}
 	/**
 	 * Send the Slack message.
@@ -70,7 +72,7 @@ export class SlackMessage {
 				referrerPolicy: 'no-referrer',
 				headers: new Headers({
 					Accept: 'text/plain',
-					'Content-Type': 'application/json',
+					'Content-Type': JSON_MIME,
 				}),
 				body: this,
 				signal,
