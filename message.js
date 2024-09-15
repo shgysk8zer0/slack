@@ -58,6 +58,7 @@ export class SlackMessage {
 	async debug() {
 		await openLink(this.debugURL);
 	}
+
 	/**
 	 * Send the Slack message.
 	 * @param {object} [options] - Optional parameters for the fetch request.
@@ -81,7 +82,9 @@ export class SlackMessage {
 			if (! resp.ok) {
 				const code = await resp.text();
 				const { status, statusText } = resp;
-				throw new  SlackError('Error sending message', { code, status, statusText, debugURL: this.debugURL });
+				throw new SlackError('Error sending message', { code, status, statusText, debugURL: this.debugURL });
+			} else {
+				return resp.headers.get('x-slack-unique-id');
 			}
 		} catch(err) {
 			if (! (err instanceof SlackError)) {

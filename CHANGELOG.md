@@ -6,6 +6,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v0.0.6] - 2024-09-15
+
+### Added
+- Add tests via `node --test` and `node:test` + `node:assert`
+
+### Changed
+- `SlackMessage.send` now returns the message id
+- Update to node 20.9.0
+
+### Fixed
+- Fix exporting wrong extensions for main/module
+
 ## [v0.0.5] - 2023-10-01
 
 ### Added

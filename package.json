@@ -1,6 +1,6 @@
 {
   "name": "@shgysk8zer0/slack",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "An npm package for sending messages in Slack",
   "keywords": [
     "slack",
@@ -8,8 +8,8 @@
     "slack-webhook"
   ],
   "type": "module",
-  "main": "slack.cjs",
-  "module": "./cjs/slack.js",
+  "main": "slack.js",
+  "module": "./cjs/slack.cjs",
   "exports": {
     ".": {
       "import": "./slack.js",
@@ -37,14 +37,16 @@
   },
   "private": false,
   "scripts": {
-    "test": "npm run lint:js && npm run build",
-    "preversion": "npm test",
-    "prepare": "npm run build",
+    "test": "npm run lint:js && npm run run:tests",
+    "preversion": "npm run build && npm test",
+    "prepare": "npm run build && npm test",
     "clean": "rm -f ./cjs/*.cjs && rm -rf ./cjs/*",
     "lint:js": "eslint .",
     "fix:js": "eslint . --fix",
     "build": "npm run build:js",
     "build:js": "npm run clean && rollup -c rollup.config.js",
+    "run:tests": "node --test --env-file='.env'",
+    "run:coverage": "node --test --env-file='.env' --experimental-test-coverage",
     "create:lock": "npm i --package-lock-only --ignore-scripts --no-audit --no-fund",
     "version:bump": "npm run version:bump:patch",
     "version:bump:patch": "npm version --no-git-tag-version patch && npm run create:lock",
