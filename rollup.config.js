@@ -8,10 +8,8 @@ const scripts = await Promise.all([
 	listDirByExt('./element/', '.js')
 ]);
 
-console.log(scripts.flat());
-
 export default {
-	input: scripts.flat().filter(script => ! script.endsWith('.config.js')),
+	input: scripts.flat().filter(script => ! (script.endsWith('.config.js') || script.endsWith('.test.js'))),
 	external: ['node:child_process', '@shgysk8zer0/http/utils.js', '@shgysk8zer0/consts/mimes.js', '@shgysk8zer0/slack/*'],
 	onwarn: warningHandler,
 	output: {

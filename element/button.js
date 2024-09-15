@@ -9,7 +9,7 @@ export class SlackButtonElement extends SlackInteractiveElement {
 	#url;
 	#value;
 	#style;
-	#confirm;
+	// #confirm;
 	#accessibilityLabel;
 
 	constructor(text, {
