@@ -1,4 +1,3 @@
-import { openLink } from '@shgysk8zer0/http/utils.js';
 import { isURL } from './validation.js';
 
 /**
@@ -50,20 +49,5 @@ export class SlackError extends Error {
 	toJSON() {
 		const { message, status, statusText, code } = this;
 		return { message, status, statusText, code };
-	}
-
-	/**
-	* Opens the message body in Slack's Block Kit Builder using the provided debug URL.
-	*
-	* @async
-	* @throws {Error} Throws an error if no debug URL is set.
-	* @returns {Promise<void>} - A Promise that resolves when the Block Kit Builder is opened.
-	*/
-	async openInBlockKitBuilder() {
-		if (isURL(this.#debugURL)) {
-			await openLink(this.#debugURL);
-		} else {
-			throw new Error('No debug URL set.');
-		}
 	}
 }
