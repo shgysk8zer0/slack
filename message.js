@@ -3,7 +3,6 @@
  * @see https://app.slack.com/block-kit-builder/
  */
 import { JSON as JSON_MIME } from '@shgysk8zer0/consts/mimes.js';
-import { openLink } from '@shgysk8zer0/http/utils.js';
 import { SlackBlock } from './block/block.js';
 import { SlackError } from './error.js';
 import { isURL } from './validation.js';
@@ -55,9 +54,9 @@ export class SlackMessage {
 		this.#blocks = [];
 	}
 
-	async debug() {
-		await openLink(this.debugURL);
-	}
+	// async debug() {
+	// 	await openLink(this.debugURL);
+	// }
 
 	/**
 	 * Send the Slack message.

@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v0.0.7] - 2024-09-15
+
+### Removed
+- Remove `SlackError.openInBlockKitBuilder` and `SlackMessage.debug`
+- Removes `@shgysk8zer0/http` as dependency due to errors
+
 ## [v0.0.6] - 2024-09-15
 
 ### Added
