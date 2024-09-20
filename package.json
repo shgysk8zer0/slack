@@ -74,6 +74,7 @@
   },
   "homepage": "https://github.com/shgysk8zer0/slack#readme",
   "devDependencies": {
+    "@shgysk8zer0/eslint-config": "^1.0.1",
     "@shgysk8zer0/js-utils": "^1.0.1",
     "@shgysk8zer0/npm-utils": "^1.1.1"
   },

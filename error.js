@@ -1,5 +1,3 @@
-import { isURL } from './validation.js';
-
 /**
  * Custom error class for handling errors related to sending Slack messages.
  *
@@ -7,7 +5,6 @@ import { isURL } from './validation.js';
  * @extends {Error}
  */
 export class SlackError extends Error {
-	#debugURL;
 	#status;
 	#statusText;
 	#code;
@@ -23,15 +20,11 @@ export class SlackError extends Error {
 	* @param {string|URL} [options.debugURL] - The URL to open the message body in Slack's Block Kit Builder.
 	* @param {Error} [options.cause] - The underlying cause of the error (optional).
 	*/
-	constructor(message, { status = 0, statusText = '', code = '', debugURL, cause }) {
+	constructor(message, { status = 0, statusText = '', code = '', cause }) {
 		super(message, { cause });
 		this.#status = status;
 		this.#statusText = statusText;
 		this.#code = code;
-
-		if (typeof debugURL !== 'undefined' && isURL(debugURL)) {
-			this.#debugURL = debugURL;
-		}
 	}
 
 	get code() {
